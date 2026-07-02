@@ -95,7 +95,9 @@
                         Console.WriteLine("Изход от програмата.");
                         break;
 
-                   
+                    default:
+                        Console.WriteLine("Невалиден избор. Моля, опитайте отново.");
+                        break;
 
 
                 }
