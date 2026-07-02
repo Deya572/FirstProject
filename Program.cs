@@ -15,7 +15,7 @@
                 Console.WriteLine("2. READ Показване на всички");
                 Console.WriteLine("3. UPDATE Промяна на заплата");
                 Console.WriteLine("4. DELETE Изстриване по име");
-                Console.Write("5. Изход");
+                Console.WriteLine("5. Изход");
                 Console.Write("Избор: ");
 
                 string choice = Console.ReadLine();
@@ -35,15 +35,27 @@
             string[] lines = File.ReadAllLines(FilePath);
             foreach (string line in lines)
             {
-            string[] parts = line.Split(';');
+                string[] parts = line.Split(';');
 
                 Person person = new Person(
                    parts[0],
                    int.Parse(parts[1]),
                    double.Parse(parts[2]));
-                people.Add(person);      
+                people.Add(person);
             }
             return people;
         }
+
+        static void SavePeopleToFile(List<Person> people)
+        {
+            List<string> rows = new List<string>();
+            foreach (Person p in people)
+            {
+                rows.Add(p.ToFileRow());
+            }
+            File.WriteAllLines(FilePath, rows);
+        }
+
+        
     }
 }
